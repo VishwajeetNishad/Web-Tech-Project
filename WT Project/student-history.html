@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student History (6 Months)</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  </head>
+  <body data-page="history">
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand"><img class="brand-logo" src="assets/images/niet-logo.svg" alt="NIET Logo" /> NIET Hostel Management</div>
+        <a href="index.html" class="nav-link" data-page="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="students.html" class="nav-link" data-page="students"><i class="fa-solid fa-user-graduate"></i> Students</a>
+        <a href="rooms.html" class="nav-link" data-page="rooms"><i class="fa-solid fa-door-open"></i> Rooms</a>
+        <a href="payments.html" class="nav-link" data-page="payments"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
+        <a href="electricity.html" class="nav-link" data-page="electricity"><i class="fa-solid fa-bolt"></i> Electricity</a>
+        <a href="student-history.html" class="nav-link" data-page="history"><i class="fa-solid fa-clock-rotate-left"></i> Student History</a>
+        <a href="settings.html" class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+      </aside>
+
+      <main class="content">
+        <div class="topbar">
+          <div>
+            <h1>Student stay history</h1>
+            <p class="muted" style="margin: 4px 0 0">Check-outs in the last 6 months — phone, room, ID proof, months stayed.</p>
+          </div>
+          <div>
+            <a class="btn" href="index.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <button class="btn mobile-toggle" id="menuToggle" type="button"><i class="fa-solid fa-bars"></i> Menu</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Room</th>
+                  <th>ID proof</th>
+                  <th>Joined</th>
+                  <th>Left</th>
+                  <th>Months</th>
+                </tr>
+              </thead>
+              <tbody id="historyTableBody"></tbody>
+            </table>
+          </div>
+          <p class="muted" id="historyEmpty" style="display: none; margin-top: 12px">No check-outs recorded in the last 6 months.</p>
+        </div>
+      </main>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/student-history.js"></script>
+  </body>
+</html>

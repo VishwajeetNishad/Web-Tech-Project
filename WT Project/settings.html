@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Settings</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  </head>
+  <body data-page="settings">
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand"><img class="brand-logo" src="assets/images/niet-logo.svg" alt="NIET Logo" /> NIET Hostel Management</div>
+        <a href="index.html" class="nav-link" data-page="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="students.html" class="nav-link" data-page="students"><i class="fa-solid fa-user-graduate"></i> Students</a>
+        <a href="rooms.html" class="nav-link" data-page="rooms"><i class="fa-solid fa-door-open"></i> Rooms</a>
+        <a href="payments.html" class="nav-link" data-page="payments"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
+        <a href="electricity.html" class="nav-link" data-page="electricity"><i class="fa-solid fa-bolt"></i> Electricity</a>
+        <a href="student-history.html" class="nav-link" data-page="history"><i class="fa-solid fa-clock-rotate-left"></i> Student History</a>
+        <a href="settings.html" class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+      </aside>
+
+      <main class="content">
+        <div class="topbar">
+          <h1>Admin Payment Settings & Reports</h1>
+          <button class="btn mobile-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>UPI & Bank Details</h3>
+            <div style="margin-top: 12px">
+              <label>UPI ID</label>
+              <input type="text" value="ownerpg@okbank" />
+            </div>
+            <div style="margin-top: 10px">
+              <label>Bank Account Name</label>
+              <input type="text" value="NIET Hostel Services" />
+            </div>
+            <div style="margin-top: 10px">
+              <label>Account Number</label>
+              <input type="text" value="XXXXXX8342" />
+            </div>
+            <div style="margin-top: 10px">
+              <label>IFSC Code</label>
+              <input type="text" value="ABCD0123456" />
+            </div>
+            <div class="actions">
+              <button class="btn btn-success" data-dummy="Payment settings updated (UI simulation).">Save Settings</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>QR Code</h3>
+            <img id="adminQrImage" src="assets/images/qr-placeholder.svg" alt="QR Placeholder" style="width: 220px; max-width: 100%; border: 1px solid var(--border); border-radius: 10px" />
+            <p class="muted">Students can pay via this QR and shared account details.</p>
+            <div style="margin-top: 10px">
+              <label>Upload New QR</label>
+              <input id="qrUploadInput" type="file" accept="image/*" />
+            </div>
+            <div class="actions">
+              <button class="btn btn-primary" id="saveQrBtn"><i class="fa-solid fa-upload"></i> Save QR</button>
+              <button class="btn" id="resetQrBtn"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2" style="margin-top: 16px">
+          <div class="card">
+            <h3>Received Amount Summary</h3>
+            <div class="grid grid-3" style="margin-top: 10px">
+              <div>
+                <p class="muted" style="margin: 0 0 4px">Total Received</p>
+                <div class="stat-value" id="totalReceivedAmount">-</div>
+              </div>
+              <div>
+                <p class="muted" style="margin: 0 0 4px">Bank / UPI Received</p>
+                <div class="stat-value" id="bankReceivedAmount">-</div>
+              </div>
+              <div>
+                <p class="muted" style="margin: 0 0 4px">Cash Received</p>
+                <div class="stat-value" id="cashReceivedAmount">-</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Reports (UI Only)</h3>
+            <p class="muted">Generate monthly summary and payment sheet.</p>
+            <div class="toolbar">
+              <button class="btn" data-dummy="Monthly summary generated."><i class="fa-solid fa-file-lines"></i> Monthly Summary</button>
+              <button class="btn" data-dummy="Payment report downloaded."><i class="fa-solid fa-download"></i> Download Report</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2" style="margin-top: 16px">
+          <div class="card">
+            <h3>Quick Tip</h3>
+            <p class="muted">Bank / UPI includes all UPI payment modes. Cash includes only direct cash entries.</p>
+          </div>
+
+          <div class="card">
+            <h3>Notice History</h3>
+            <div id="noticeHistory"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/settings.js"></script>
+  </body>
+</html>

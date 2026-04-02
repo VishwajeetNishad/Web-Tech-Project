@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electricity Bills</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  </head>
+  <body data-page="electricity">
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand"><img class="brand-logo" src="assets/images/niet-logo.svg" alt="NIET Logo" /> NIET Hostel Management</div>
+        <a href="index.html" class="nav-link" data-page="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="students.html" class="nav-link" data-page="students"><i class="fa-solid fa-user-graduate"></i> Students</a>
+        <a href="rooms.html" class="nav-link" data-page="rooms"><i class="fa-solid fa-door-open"></i> Rooms</a>
+        <a href="payments.html" class="nav-link" data-page="payments"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
+        <a href="electricity.html" class="nav-link" data-page="electricity"><i class="fa-solid fa-bolt"></i> Electricity</a>
+        <a href="student-history.html" class="nav-link" data-page="history"><i class="fa-solid fa-clock-rotate-left"></i> Student History</a>
+        <a href="settings.html" class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+      </aside>
+
+      <main class="content">
+        <div class="topbar">
+          <h1>Electricity Bill Management</h1>
+          <div>
+            <button class="btn mobile-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+            <button class="btn btn-primary" data-open-modal="billModal"><i class="fa-solid fa-plus"></i> Add Monthly Bill</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Room</th>
+                  <th>Total Bill</th>
+                  <th>No. Students</th>
+                  <th>Per Student Due</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="billTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal" id="billModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin: 0; font-size: 1.1rem">Add Electricity Bill</h2>
+          <button class="btn" data-close-modal>Close</button>
+        </div>
+        <div class="form-grid">
+          <div><label>Month</label><input type="text" placeholder="March 2026" /></div>
+          <div><label>Room</label><select><option>A-102</option><option>B-201</option><option>B-202</option></select></div>
+          <div><label>Total Electricity Bill</label><input type="number" /></div>
+          <div><label>Upload Bill Snapshot</label><input type="file" /></div>
+        </div>
+        <div class="actions">
+          <button class="btn" data-close-modal>Cancel</button>
+          <button class="btn btn-primary" data-dummy="Electricity bill added (UI simulation).">Save Bill</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/electricity.js"></script>
+  </body>
+</html>

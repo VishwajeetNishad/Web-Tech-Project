@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Register - NIET Hostel Management</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  </head>
+  <body data-page="register">
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <div class="brand auth-brand">
+          <img class="brand-logo" src="assets/images/niet-logo.svg" alt="NIET Logo" />
+          NIET Hostel Management
+        </div>
+        <h2 style="margin-top: 0">Admin Register</h2>
+        <p class="muted">Create admin account with mobile number and password.</p>
+
+        <form id="registerForm">
+          <div style="margin-bottom: 10px">
+            <label>Admin Name</label>
+            <input id="adminName" type="text" placeholder="Enter name" required />
+          </div>
+          <div style="margin-bottom: 10px">
+            <label>Mobile Number</label>
+            <input id="adminNumber" type="text" placeholder="10-digit mobile number" required />
+          </div>
+          <div style="margin-bottom: 10px">
+            <label>Password</label>
+            <input id="adminPassword" type="password" placeholder="Create password" required />
+          </div>
+          <div style="margin-bottom: 14px">
+            <label>Confirm Password</label>
+            <input id="adminConfirmPassword" type="password" placeholder="Confirm password" required />
+          </div>
+          <button class="btn btn-primary" type="submit" style="width: 100%">Register</button>
+        </form>
+
+        <p class="muted" style="margin-bottom: 0; margin-top: 12px">
+          Already registered? <a href="login.html">Login here</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+  </body>
+</html>

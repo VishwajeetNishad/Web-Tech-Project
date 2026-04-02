@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Management</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  </head>
+  <body data-page="payments">
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand"><img class="brand-logo" src="assets/images/niet-logo.svg" alt="NIET Logo" /> NIET Hostel Management</div>
+        <a href="index.html" class="nav-link" data-page="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="students.html" class="nav-link" data-page="students"><i class="fa-solid fa-user-graduate"></i> Students</a>
+        <a href="rooms.html" class="nav-link" data-page="rooms"><i class="fa-solid fa-door-open"></i> Rooms</a>
+        <a href="payments.html" class="nav-link" data-page="payments"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
+        <a href="electricity.html" class="nav-link" data-page="electricity"><i class="fa-solid fa-bolt"></i> Electricity</a>
+        <a href="student-history.html" class="nav-link" data-page="history"><i class="fa-solid fa-clock-rotate-left"></i> Student History</a>
+        <a href="settings.html" class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+      </aside>
+
+      <main class="content">
+        <div class="topbar">
+          <h1>Payment Management</h1>
+          <div>
+            <button class="btn mobile-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+            <button class="btn btn-primary" data-open-modal="paymentModal"><i class="fa-solid fa-plus"></i> Add Payment</button>
+          </div>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card"><h3>Expected Amount</h3><div class="stat-value" id="expectedAmount">-</div></div>
+          <div class="card"><h3>Collected Amount</h3><div class="stat-value" id="paidAmount">-</div></div>
+          <div class="card"><h3>Pending Amount</h3><div class="stat-value" id="pendingAmount">-</div></div>
+        </div>
+
+        <div class="card" style="margin-top: 16px">
+          <div class="toolbar">
+            <input id="paymentSearch" type="text" placeholder="Search by student or transaction ID..." />
+            <input id="paymentMonthFilter" type="text" placeholder="Filter by month (e.g., March 2026)" />
+            <select id="paymentStatusFilter">
+              <option value="">All Payments</option>
+              <option value="Paid">Paid</option>
+              <option value="Pending">Pending</option>
+            </select>
+            <button class="btn" id="exportPaymentsCsv"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+            <button class="btn btn-warning" data-open-modal="reminderModal"><i class="fa-solid fa-message"></i> Send Reminder</button>
+          </div>
+          <p class="muted" id="paymentInsight"></p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Txn ID</th>
+                  <th>Student</th>
+                  <th>Month</th>
+                  <th>Rent (E/P)</th>
+                  <th>Electricity (E/P)</th>
+                  <th>Mode</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="paymentsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal" id="paymentModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin: 0; font-size: 1.1rem">Add / Edit Payment</h2>
+          <button class="btn" data-close-modal>Close</button>
+        </div>
+        <form id="paymentForm">
+          <div class="form-grid">
+            <div><label>Student</label><select id="paymentStudent" required></select></div>
+            <div><label>Month</label><input id="paymentMonth" type="text" placeholder="March 2026" required /></div>
+            <div><label>Rent Expected</label><input id="paymentRentExpected" type="number" min="0" required /></div>
+            <div><label>Rent Amount Paid</label><input id="paymentRentPaid" type="number" min="0" required /></div>
+            <div><label>Electricity Expected</label><input id="paymentElectricityExpected" type="number" min="0" required /></div>
+            <div><label>Electricity Amount Paid</label><input id="paymentElectricityPaid" type="number" min="0" required /></div>
+            <div><label>Mode</label><select id="paymentMode"><option>Cash</option><option>UPI - GPay</option><option>UPI - PhonePe</option><option>UPI - Paytm</option></select></div>
+            <div><label>Payment Proof Upload</label><input type="file" /></div>
+          </div>
+          <div class="actions">
+            <button class="btn" type="button" data-close-modal>Cancel</button>
+            <button class="btn btn-primary" type="submit">Save Payment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="reminderModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin: 0; font-size: 1.1rem">Send Reminder</h2>
+          <button class="btn" data-close-modal>Close</button>
+        </div>
+        <div class="form-grid">
+          <div><label>Student</label><select id="reminderStudent"></select></div>
+          <div><label>Channel</label><select id="reminderChannel"><option>WhatsApp Message</option><option>SMS</option></select></div>
+          <div><label>Template</label><select id="reminderTemplate"><option>Rent Due Reminder</option><option>Payment Confirmation</option></select></div>
+        </div>
+        <div style="margin-top: 12px">
+          <label>Message Preview</label>
+          <textarea id="reminderPreview" rows="5"></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn" data-close-modal>Cancel</button>
+          <button class="btn btn-warning" id="sendReminderBtn">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="historyModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin: 0; font-size: 1.1rem">Student Transaction History</h2>
+          <button class="btn" data-close-modal>Close</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Txn ID</th>
+                <th>Month</th>
+                <th>Total Expected</th>
+                <th>Total Paid</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="historyTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/payments.js"></script>
+  </body>
+</html>

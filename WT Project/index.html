@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NIET Hostel Management Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  </head>
+  <body data-page="dashboard">
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand"><img class="brand-logo" src="assets/images/niet-logo.svg" alt="NIET Logo" /> NIET Hostel Management</div>
+        <a href="index.html" class="nav-link" data-page="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="students.html" class="nav-link" data-page="students"><i class="fa-solid fa-user-graduate"></i> Students</a>
+        <a href="rooms.html" class="nav-link" data-page="rooms"><i class="fa-solid fa-door-open"></i> Rooms</a>
+        <a href="payments.html" class="nav-link" data-page="payments"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
+        <a href="electricity.html" class="nav-link" data-page="electricity"><i class="fa-solid fa-bolt"></i> Electricity</a>
+        <a href="student-history.html" class="nav-link" data-page="history"><i class="fa-solid fa-clock-rotate-left"></i> Student History</a>
+        <a href="settings.html" class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+      </aside>
+
+      <main class="content">
+        <div class="topbar">
+          <h1>Dashboard Overview</h1>
+          <div>
+            <button class="btn mobile-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+            <button class="btn btn-primary" data-open-modal="noticeModal"><i class="fa-solid fa-bullhorn"></i> Send Notice</button>
+          </div>
+        </div>
+
+        <section class="card history-cta">
+          <div>
+            <h3 style="margin: 0 0 6px">Student stay history</h3>
+            <p class="muted" style="margin: 0">Past 6 months: who left, room, ID proof, phone, months stayed.</p>
+          </div>
+          <a class="history-cta-link" href="student-history.html">Open student history <i class="fa-solid fa-arrow-right"></i></a>
+        </section>
+
+        <section class="grid grid-4" id="statsCards"></section>
+        <section class="grid grid-3" id="financeCards" style="margin-top: 16px"></section>
+
+        <section class="grid grid-2" style="margin-top: 16px">
+          <div class="card">
+            <h3>Occupancy Rate</h3>
+            <div class="progress">
+              <div class="progress-bar" id="occupancyProgress"></div>
+            </div>
+            <p class="muted" id="occupancyText"></p>
+          </div>
+          <div class="card">
+            <h3>Payment Completion</h3>
+            <div class="progress">
+              <div class="progress-bar" id="paymentProgress"></div>
+            </div>
+            <p class="muted" id="paymentText"></p>
+          </div>
+        </section>
+
+        <section class="grid grid-2" style="margin-top: 16px">
+          <div class="card">
+            <h3>Monthly Expected vs Collected</h3>
+            <div class="chart-box">
+              <canvas id="monthlyChart"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Yearly Collection Trend</h3>
+            <div class="chart-box">
+              <canvas id="yearlyChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top: 16px">
+          <div class="topbar" style="margin-bottom: 10px">
+            <h1 style="font-size: 1.1rem">Recent Transactions</h1>
+            <button class="btn" data-dummy="Report export simulated (CSV)."><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Student</th>
+                  <th>Month</th>
+                  <th>Mode</th>
+                  <th>Status</th>
+                  <th>Total Paid</th>
+                </tr>
+              </thead>
+              <tbody id="recentTransactions"></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="noticeModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin: 0; font-size: 1.1rem">Send Incident/Notice</h2>
+          <button class="btn" data-close-modal>Close</button>
+        </div>
+        <div class="form-grid">
+          <div>
+            <label>Notice Title</label>
+            <input id="noticeTitle" type="text" placeholder="e.g., Power Cut" required />
+          </div>
+          <div>
+            <label>Audience</label>
+            <select id="noticeAudience">
+              <option>All Students</option>
+              <option>Room Wise</option>
+            </select>
+          </div>
+        </div>
+        <div style="margin-top: 12px">
+          <label>Message</label>
+          <textarea id="noticeMessage" rows="4" placeholder="Write message..." required></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn" data-close-modal>Cancel</button>
+          <button type="button" class="btn btn-primary" id="sendNoticeBtn">Send Notice</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="successModal">
+      <div class="modal-content modal-content--narrow">
+        <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+        <p id="successModalText" style="margin: 0 0 16px; font-size: 1rem; font-weight: 600"></p>
+        <button type="button" class="btn btn-primary" data-close-modal>OK</button>
+      </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+  </body>
+</html>

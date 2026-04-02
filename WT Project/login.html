@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - NIET Hostel Management</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  </head>
+  <body data-page="login">
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <div class="brand auth-brand">
+          <img class="brand-logo" src="assets/images/niet-logo.svg" alt="NIET Logo" />
+          NIET Hostel Management
+        </div>
+        <h2 style="margin-top: 0">Admin Login</h2>
+        <p class="muted">Login using registered mobile number and password.</p>
+
+        <form id="loginForm">
+          <div style="margin-bottom: 10px">
+            <label>Mobile Number</label>
+            <input id="loginNumber" type="text" placeholder="10-digit mobile number" required />
+          </div>
+          <div style="margin-bottom: 14px">
+            <label>Password</label>
+            <input id="loginPassword" type="password" placeholder="Enter password" required />
+          </div>
+          <button class="btn btn-primary" type="submit" style="width: 100%">Login</button>
+        </form>
+
+        <p class="muted" style="margin-bottom: 0; margin-top: 12px">
+          New admin? <a href="register.html">Create account</a>
+        </p>
+      </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+  </body>
+</html>

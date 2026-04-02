@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Room Management</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  </head>
+  <body data-page="rooms">
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand"><img class="brand-logo" src="assets/images/niet-logo.svg" alt="NIET Logo" /> NIET Hostel Management</div>
+        <a href="index.html" class="nav-link" data-page="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="students.html" class="nav-link" data-page="students"><i class="fa-solid fa-user-graduate"></i> Students</a>
+        <a href="rooms.html" class="nav-link" data-page="rooms"><i class="fa-solid fa-door-open"></i> Rooms</a>
+        <a href="payments.html" class="nav-link" data-page="payments"><i class="fa-solid fa-money-bill-wave"></i> Payments</a>
+        <a href="electricity.html" class="nav-link" data-page="electricity"><i class="fa-solid fa-bolt"></i> Electricity</a>
+        <a href="student-history.html" class="nav-link" data-page="history"><i class="fa-solid fa-clock-rotate-left"></i> Student History</a>
+        <a href="settings.html" class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+      </aside>
+
+      <main class="content">
+        <div class="topbar">
+          <h1>Room Management</h1>
+          <div>
+            <button class="btn mobile-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+            <button type="button" class="btn btn-primary" id="openAddRoomModal"><i class="fa-solid fa-plus"></i> Add Room</button>
+          </div>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card"><h3>Total Rooms</h3><div class="stat-value" id="roomTotalCount">0</div></div>
+          <div class="card"><h3>Filled Rooms</h3><div class="stat-value" id="roomFilledCount">0</div></div>
+          <div class="card"><h3>Vacant Rooms</h3><div class="stat-value" id="roomVacantCount">0</div></div>
+        </div>
+
+        <div class="card" style="margin-top: 16px">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Room No.</th>
+                  <th>Type</th>
+                  <th>Rent</th>
+                  <th>Capacity</th>
+                  <th>Occupied</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="roomsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal" id="roomModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 style="margin: 0; font-size: 1.1rem" id="roomModalTitle">Add Room</h2>
+          <button class="btn" data-close-modal>Close</button>
+        </div>
+        <form id="roomForm">
+          <input type="hidden" id="roomEditId" value="" />
+          <div class="form-grid">
+            <div><label>Room Number</label><input id="roomNumber" type="text" placeholder="e.g., D-105" required /></div>
+            <div><label>Room Type</label><select id="roomType"><option>Single</option><option>Double</option><option>Triple</option><option>Quad</option></select></div>
+            <div><label>Rent</label><input id="roomRent" type="number" placeholder="Monthly rent" required /></div>
+            <div><label>Capacity</label><input id="roomCapacity" type="number" placeholder="1, 2, 3..." min="1" required /></div>
+          </div>
+          <div class="actions">
+            <button class="btn" type="button" data-close-modal>Cancel</button>
+            <button class="btn btn-primary" type="submit">Save Room</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/rooms.js"></script>
+  </body>
+</html>

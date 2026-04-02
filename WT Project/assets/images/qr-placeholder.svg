@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" fill="none">
+  <rect width="320" height="320" rx="16" fill="#F8FAFC"/>
+  <rect x="18" y="18" width="284" height="284" rx="12" stroke="#CBD5E1" stroke-width="4"/>
+  <rect x="45" y="45" width="70" height="70" fill="#0F172A"/>
+  <rect x="55" y="55" width="50" height="50" fill="#F8FAFC"/>
+  <rect x="63" y="63" width="34" height="34" fill="#0F172A"/>
+  <rect x="205" y="45" width="70" height="70" fill="#0F172A"/>
+  <rect x="215" y="55" width="50" height="50" fill="#F8FAFC"/>
+  <rect x="223" y="63" width="34" height="34" fill="#0F172A"/>
+  <rect x="45" y="205" width="70" height="70" fill="#0F172A"/>
+  <rect x="55" y="215" width="50" height="50" fill="#F8FAFC"/>
+  <rect x="63" y="223" width="34" height="34" fill="#0F172A"/>
+  <rect x="145" y="145" width="20" height="20" fill="#0F172A"/>
+  <rect x="175" y="145" width="20" height="20" fill="#0F172A"/>
+  <rect x="145" y="175" width="20" height="20" fill="#0F172A"/>
+  <rect x="175" y="175" width="20" height="20" fill="#0F172A"/>
+  <rect x="205" y="205" width="20" height="20" fill="#0F172A"/>
+  <rect x="235" y="205" width="20" height="20" fill="#0F172A"/>
+  <rect x="205" y="235" width="20" height="20" fill="#0F172A"/>
+  <text x="160" y="302" text-anchor="middle" fill="#64748B" font-size="14" font-family="Arial, sans-serif">Sample UPI QR</text>
+</svg>
